@@ -222,20 +222,6 @@ const App: React.FC = () => {
               </motion.div>
             </main>
 
-            <footer className="absolute bottom-4 right-4 z-10">
-              <motion.a
-                  href="https://github.com/google/aistudio-web"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-500 transition-colors duration-300"
-                  aria-label="View source on GitHub"
-                  whileHover={{ scale: 1.1, color: '#f472b6' }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <GithubIcon className="w-6 h-6" />
-                </motion.a>
-            </footer>
-
             <Wave />
           </motion.div>
         )}
