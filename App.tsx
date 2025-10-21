@@ -7,6 +7,7 @@ import { TypingText } from './components/TypingText';
 import { GithubIcon } from './components/GithubIcon';
 import { Intro } from './components/Intro';
 import { playClickSound, playSuccessSound, playCopySound, playTypingSound, startGeneratingSound, stopGeneratingSound } from './services/audioService';
+import { LogoIcon } from './components/LogoIcon';
 
 const App: React.FC = () => {
   const [situation, setSituation] = useState<string>('');
@@ -119,12 +120,17 @@ const App: React.FC = () => {
                 animate="visible"
                 transition={{ velocity: 0.1, stiffness: 40, damping: 10 }}
               >
-                <motion.h1 
-                  className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 mb-2 animated-text-gradient"
+                <motion.div
+                  className="flex items-center justify-center gap-x-3 mb-2"
                   variants={itemVariants}
                 >
-                  Get Me Out
-                </motion.h1>
+                  <LogoIcon className="w-10 h-10 text-gray-400" />
+                  <h1 
+                    className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 animated-text-gradient"
+                  >
+                    Get Me Out
+                  </h1>
+                </motion.div>
                 <motion.p 
                   className="text-gray-400 mb-8"
                   variants={itemVariants}
