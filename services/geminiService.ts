@@ -1,23 +1,25 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Assume process.env.API_KEY is configured in the environment.
+// This is a client-side app, but the platform injects environment variables.
+// We check for the key and handle its absence gracefully.
 const API_KEY = process.env.API_KEY;
 
-if (!API_KEY) {
-  // In a real app, you might show a UI message or handle this more gracefully.
-  // For this context, throwing an error is sufficient.
-  console.error("API_KEY is not set in environment variables.");
+// Conditionally initialize the AI client. If the key is missing, `ai` will be null.
+const ai = API_KEY ? new GoogleGenAI({ apiKey: API_KEY }) : null;
+
+if (!ai) {
+  // Log a developer-facing error to the console. The UI will show a friendly error.
+  console.error("API_KEY environment variable is not set. The app will not function correctly.");
 }
 
-const ai = new GoogleGenAI({ apiKey: API_KEY! });
-
 export async function generateExcuse(situation: string): Promise<string> {
-  if (!situation.trim()) {
-    return "Please tell me the situation first, and I'll whip up an excuse for you!";
+  // If the AI client wasn't initialized, throw an error that the UI can catch and display.
+  if (!ai) {
+    throw new Error("API Key is not configured. Please set the API_KEY environment variable in your deployment settings.");
   }
   
-  if (!API_KEY) {
-    return "API Key is missing. Please configure your environment.";
+  if (!situation.trim()) {
+    return "Please tell me the situation first, and I'll whip up an excuse for you!";
   }
 
   try {
